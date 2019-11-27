@@ -1,0 +1,28 @@
+version: '3' # specify docker-compose version
+
+services:
+  web_service_1:
+    build: ./Service_1 # specify the directory of the Dockerfile
+    ports:
+      - "8000:80" # specify port mapping
+    depends_on:
+      - db
+  web_service_2:
+    build: ./Service_2 # specify the directory of the Dockerfile
+    ports:
+      - "9000:80" # specify port mapping
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=newuser
+      - MYSQL_PASSWORD=password
