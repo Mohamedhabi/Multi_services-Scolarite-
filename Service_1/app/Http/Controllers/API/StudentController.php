@@ -9,7 +9,11 @@ use App\Student;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-
+/**
+ * @group Student management
+ *
+ * APIs for managing Student
+ */
 class StudentController extends Controller
 {
 
@@ -24,8 +28,29 @@ class StudentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the students.
+     * @authenticated
      *
+     * @bodyParam token string required The token of the admin. Example:lmkfmelzkf
+     * @response {
+     *  "status": "success",
+     *  "data": [
+     *    {
+     *     "id": 1,
+     *     "first_name": "Mohamed",
+     *     "last_name": "Habi",
+     *     "adress": "Setif",
+     *     "birth_place": "Setif",
+     *     "birth_day": "1999-12-11",
+     *     "level": "1CS",
+     *     "email": "Habi1@esi.dz"
+     *    }
+     *  ]
+     * }
+     * @response 401 {
+     *  "message": "Unauthenticated"
+     * }
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -36,19 +61,35 @@ class StudentController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
+     /**
+     * Store a newly created student in storage.
+     * @authenticated
+     * @bodyParam token string required The token of the admin. Example:lmkfmelzkf
+     * @bodyParam firt_name string required The firt name of the student. Example: Mohamed
+     * @bodyParam last_name string required The last name of the student. Example: Habi
+     * @bodyParam level string required The level of the student. Example: 1cs
+     * @bodyParam birth_place string required The birth place of the student. Example: Setif
+     * @bodyParam birth_day date required The birth day of the student. Example: 1999-12-11
+     * @bodyParam adress string required The adress of the student. Example: Setif
      *
+     * @response {
+     *  "status": "success"
+     * }
+     * 
+     * @response 500 {
+     *  "status": "error",
+     *  "message": { "birth_day": ["The birth day field is required."]}
+     * }
+     *  
+     * @response 401 {
+     *  "message": "Unauthenticated"
+     * }
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-        /**
-         *         'first_name', 'last_name', 'password','adress','email','','birth_place','birth_day'
-
-         */
         $max_year=date('Y') -16;
         $validation =Validator::make($request->all(),[
             'first_name'=>"required|max:40|min:2",
@@ -77,14 +118,13 @@ class StudentController extends Controller
         $student->save();
 
         return response()->json([
-            'status' => 'success',
-            'data' => Student::all()
+            'status' => 'success'
         ]);
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Display the specified student.
+
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -99,8 +139,16 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified student from storage.
      *
+     * @response {
+     * "status": "success",
+     * "message": "student deleted"
+     * }
+     * @authenticated
+     * @bodyParam token string required The token of the admin. Example:lmkfmelzkf
+     * @response 404{ "status": "error", "message": "student not found" }
+     * @bodyParam id int required The id of the student. Example: 5
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

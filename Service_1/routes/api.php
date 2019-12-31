@@ -25,11 +25,10 @@ Route::group([
 ], function ($router) {
 
     Route::post('login', 'AuthController@login');
-    Route::post('register', 'AuthController@register');
+    //Route::post('refresh', 'AuthController@refresh');
+    //Route::post('register', 'AuthController@register');
     Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-    Route::post('me', 'AuthController@me');
-    Route::resource('student', 'API\StudentController')->except('update','create','edit');
+    //Route::post('me', 'AuthController@me');
+    Route::resource('student', 'API\StudentController')->except('show','update','create','edit');
 
 });

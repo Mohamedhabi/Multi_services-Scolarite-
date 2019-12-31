@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
+/**
+ * @group Admin account management
+ *
+ * APIs for managing admin account
+ */
 class AuthController extends Controller
 {
+
+    
     /**
      * Create a new AuthController instance.
      *
@@ -20,8 +27,21 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
+     
+     * 
+     * 
+     * Login and get a JWT via given credentials.
+     * 
+     
+     * @bodyParam email string required The email of the admin. Example:mohamed@test.com
+     * @bodyParam password string required The password name of the admin. Example: dalzkjlk
+     * @response {
+     *  "access_token": "eyJ0eXAiOi",
+     *  "token_type": "bearer",
+     *  "expires_in": 3600,
+     *  "user": {"id": 1,"name": "user1","email": "mohamed@test.com","email_verified_at": null,"created_at": "2019-11-27 00:49:25","updated_at": "2019-11-27 00:49:25"}
+     * }
+     * @response 401{"message": "Wrong email or password"}
      * @return \Illuminate\Http\JsonResponse
      */
     public function login()
@@ -46,8 +66,14 @@ class AuthController extends Controller
     }
 
     /**
+     * 
+     * @authenticated
+     * @bodyParam token string required The token of the admin. Example:lmkfmelzkf
      * Log the user out (Invalidate the token).
-     *
+     * @response {"message": "Successfully logged out"}
+     * @response 401 {
+     *  "message": "Unauthenticated"
+     * }
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
@@ -58,7 +84,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * Register a new Administrator(Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
      */

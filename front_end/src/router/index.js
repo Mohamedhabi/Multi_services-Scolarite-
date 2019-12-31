@@ -6,7 +6,6 @@ import  Login  from "../views/Login.vue";
 import  StudentsLogin  from "../views/StudentLogin.vue";
 import  StudentProfile  from "../views/StudentProfile.vue";
 import  Add  from "../views/Add.vue";
-//import  List  from "../views/List.vue";
 import store from "../store";
 
 
@@ -67,15 +66,6 @@ const router = new VueRouter({
   ]
 });
 
-/**
- * router.beforeEach((to,from,next)=>{
-  if (to.matched.some(record => record.meta.secure)) {
-    
-  }
-
-});
- */
-
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.secure)) {
     if(store.state.StudentloggedIn){
@@ -116,16 +106,20 @@ router.beforeEach((to, from, next) => {
       next();
     }
   } else {
-    next();
-  }
+      if (store.state.loggedIn) {
+        next({
+          path: "/Students"
+        });
+      }else if (store.state.StudentloggedIn){
+        next({
+          path: "/Student/Profile"
+        });
+      }else {
+        next({
+          path: "/Login"
+        });
+      }
+    }
 });
 
 export default router;
-
-
-  /**
-   * 
-   * * {
-  },
-   * */
-   

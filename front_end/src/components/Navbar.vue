@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <router-link class="navbar-brand" to="/">Home</router-link>
+    <!--router-link class="navbar-brand" to="/">Home</router-link-->
     <button
       class="navbar-toggler"
       type="button"
@@ -30,10 +30,10 @@
           <router-link class="nav-link my-1 ml-1" to="/Student/Profile">Profile</router-link>
         </li>
         <li class="nav-item" v-if="loggedIn">
-          <button class="nav-link my-1 ml-1" @click.prevent="performLogout">Logout</button>
+          <button class="btn-warning btn  my-1 ml-1" @click.prevent="performLogout">Logout</button>
         </li>
         <li class="nav-item" v-if="StudentloggedIn">
-          <button class="nav-link my-1 ml-1" @click.prevent="performStudentLogout">Logout</button>
+          <button class="btn-warning btn my-1 ml-1" @click.prevent="performStudentLogout">Logout</button>
         </li>
       </ul>
     </div>
