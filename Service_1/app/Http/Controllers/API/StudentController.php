@@ -148,7 +148,6 @@ class StudentController extends Controller
      * @authenticated
      * @bodyParam token string required The token of the admin. Example:lmkfmelzkf
      * @response 404{ "status": "error", "message": "student not found" }
-     * @bodyParam id int required The id of the student. Example: 5
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

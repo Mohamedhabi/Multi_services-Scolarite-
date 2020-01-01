@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "84269d92-c803-4ad3-89fd-fd0e1844351d",
+        "_postman_id": "a9ede556-ee14-4eb6-9242-8cc7920af83c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -126,7 +126,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"token\": \"lmkfmelzkf\",\n    \"id\": 5\n}"
+                            "raw": "{\n    \"token\": \"lmkfmelzkf\"\n}"
                         },
                         "description": "",
                         "response": []

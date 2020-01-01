@@ -407,7 +407,7 @@ fetch(url, {
     "http://localhost/api/auth/student/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"token":"lmkfmelzkf","id":5}'
+    -d '{"token":"lmkfmelzkf"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/auth/student/1"
@@ -419,8 +419,7 @@ let headers = {
 };
 
 let body = {
-    "token": "lmkfmelzkf",
-    "id": 5
+    "token": "lmkfmelzkf"
 }
 
 fetch(url, {
@@ -462,12 +461,6 @@ fetch(url, {
 <td>string</td>
 <td>required</td>
 <td>The token of the admin.</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td>integer</td>
-<td>required</td>
-<td>The id of the student.</td>
 </tr>
 </tbody>
 </table>

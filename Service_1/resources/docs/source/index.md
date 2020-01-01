@@ -341,7 +341,7 @@ curl -X DELETE \
     "http://localhost/api/auth/student/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"token":"lmkfmelzkf","id":5}'
+    -d '{"token":"lmkfmelzkf"}'
 
 ```
 
@@ -356,8 +356,7 @@ let headers = {
 };
 
 let body = {
-    "token": "lmkfmelzkf",
-    "id": 5
+    "token": "lmkfmelzkf"
 }
 
 fetch(url, {
@@ -394,7 +393,6 @@ fetch(url, {
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `token` | string |  required  | The token of the admin.
-        `id` | integer |  required  | The id of the student.
     
 <!-- END_e57b99e5a20f664b81ce6870d52b4c00 -->
 

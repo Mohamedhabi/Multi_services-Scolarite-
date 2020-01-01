@@ -62,7 +62,6 @@ export default {
           this.isLoading = false;
           if(err.response && err.response.status==401) this.error = err.response.data.message;
           else this.error ="You are not connected to the server";
-          console.log(err);
         });
       }
     }
